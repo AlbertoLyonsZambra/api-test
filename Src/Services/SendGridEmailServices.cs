@@ -50,7 +50,7 @@ public class SendGridEmailServices(IConfiguration config) : ISendGridEmailServic
             msg.SetFrom(from);
             msg.AddTo(to);
 
-            msg.SetTemplateId("d-45c1e1278b494fdfab11fece6e192305");
+            msg.SetTemplateId("d-30e8495a57ae4f7c96f3117db3d98f9c");
             msg.SetTemplateData(new
             {
                 TEMP_PASSWORD = tempPassword
