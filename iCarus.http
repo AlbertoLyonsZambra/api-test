@@ -1,0 +1,15 @@
+@iCarus_HostAddress = http://localhost:5091
+
+POST {{iCarus_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Ali",
+  "lastName": "Jamenei",
+  "email": "elias.james@alumnos.ucn.cl",
+  "rut": "15518258k",
+  "phoneNumber": "9824342322",
+  "RoleId": 2
+}
+
+###
