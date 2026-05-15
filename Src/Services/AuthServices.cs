@@ -132,15 +132,13 @@ public class AuthServices(ContextDb contextDb, IConfiguration config, ISendGridE
             RoleId = 2
         };
 
- //         _contextDb.Users.Add(newUser);
- //       await _contextDb.SaveChangesAsync();
- //       
-//
- //       await _emailService.SendEmailAsync(
- //       registerDto.Email,
-  //      "Bienvenido - Tu contraseña temporal",
-   //     tempPassword
-   //         );
+        _contextDb.Users.Add(newUser);
+        await _contextDb.SaveChangesAsync();
+        await _emailService.SendEmailAsync(
+        registerDto.Email,
+        "Bienvenido - Tu contraseña temporal",
+        tempPassword
+        );
 
             return new RegisterResponse
         {
