@@ -36,8 +36,7 @@ public class RegisterDto
     /// Debe ser único en el sistema, de lo contrario despliega un mensaje de error.
     /// </summary>
     [Required(ErrorMessage = "Falta completar el campo rut")]
-    [RegularExpression(@"^[0-9]{7,8}[0-9kK]{1}$", 
-    ErrorMessage = "El RUT debe ingresarse sin puntos ni guion (ej: 12456789K)")]
+
     public string Rut {get; set; } = String.Empty;
 
     /// <summary>
