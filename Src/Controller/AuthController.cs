@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using iCarus.Src.Dtos.Users;
+using iCarus.Src.Services.Interfaces;
 using iCarus.Src.Services.interfaces;
+
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
@@ -9,9 +11,11 @@ namespace iCarus.Src.Controller;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(IAuthServices authServices) : ControllerBase
+public class AuthController(IAuthServices authServices, ISendGridEmailServices emailService) : ControllerBase
 {
     private readonly IAuthServices _authServices = authServices;
+    private readonly ISendGridEmailServices _emailService = emailService;
+
 
     /**
      * Recibe la solicitud HTTP para iniciar sesión.
@@ -36,6 +40,20 @@ public class AuthController(IAuthServices authServices) : ControllerBase
      *	@param {RegisterDto} registerDto - Datos personales y de contacto del usuario a registrar.
      *	@returns {Task<IActionResult>} Respuesta HTTP con BadRequest si falla u Ok si el registro es exitoso.
      */
+    [HttpPost("testEmail")]
+    public async Task<IActionResult> TestEmail(string text)
+    {
+        var response = await _emailService.SendEmailAsync(
+        "revatoto15@gmail.com",
+        "Bienvenido - Tu contraseña temporal",
+        text
+        );
+        if (!response)
+        {
+            return BadRequest(response);
+        }
+        return Ok(response);
+    }
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
     {
